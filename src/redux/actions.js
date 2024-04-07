@@ -1,8 +1,21 @@
-// src/redux/actions.js
+import { createAction, nanoid } from "@reduxjs/toolkit";
+export const deleteTask = createAction("tasks/deleteTask");
+export const toggleCompleted = createAction("tasks/toggleCompleted");
+export const setStatusFilter = createAction("filters/setStatusFilter");
 
-import { nanoid } from "nanoid";
+export const addTask = createAction("tasks/addTask", (text) => {
+  return {
+    payload: {
+      id: nanoid(),
+      completed: false,
+      text,
+    },
+  };
+});
+//console.log(addTask("Learn Redux Toolkit"));
+// {type: "tasks/addTask", payload: "Learn Redux Toolkit"}
 
-export const addTask = (text) => {
+/* export const addTask = (text) => {
   return {
     type: "tasks/addTask",
     payload: {
@@ -32,4 +45,4 @@ export const setStatusFilter = (value) => {
     type: "filters/setStatusFilter",
     payload: value,
   };
-};
+}; */
